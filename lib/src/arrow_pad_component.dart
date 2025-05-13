@@ -55,6 +55,7 @@ class ArrowPad extends StatelessWidget {
     this.onPressedLeft,
     this.onPressedRight,
     this.onPressed,
+    this.onLeave,
     this.clickTrigger = ClickTrigger.onTapDown,
     this.arrowPadIconStyle = ArrowPadIconStyle.chevron,
     this.outerColor,
