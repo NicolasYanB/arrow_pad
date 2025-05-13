@@ -7,4 +7,6 @@ enum ClickTrigger {
 
   /// trigger the click when tap up
   onTapUp;
+
+  onTapBoth
 }

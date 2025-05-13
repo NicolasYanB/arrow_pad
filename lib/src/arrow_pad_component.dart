@@ -96,6 +96,7 @@ class ArrowPad extends StatelessWidget {
 
   /// function when pressed any button
   final void Function(PressDirection direction)? onPressed;
+  final void Function(PressDirection direction)? onLeave;
 
   /// When to trigger the pressed functions using [ClickTrigger]
   ///
@@ -186,11 +187,11 @@ class ArrowPad extends StatelessWidget {
                           borderRadius: BorderRadius.circular(padSize - 10),
                           onTap: () {},
                           onTapUp: (details) =>
-                              clickTrigger == ClickTrigger.onTapUp
+                              clickTrigger == ClickTrigger.onTapUp || ClickTrigger.onTapBoth
                                   ? _tapHandle(details, padSize)
                                   : null,
                           onTapDown: (details) =>
-                              clickTrigger == ClickTrigger.onTapDown
+                              clickTrigger == ClickTrigger.onTapDown || ClickTrigger.onTapBoth
                                   ? _tapHandle(details, padSize)
                                   : null,
                           child: Padding(
@@ -251,15 +252,21 @@ class ArrowPad extends StatelessWidget {
     if (x > part && x < part * 2) {
       // up or down
       if (y < part) {
-        if (onPressed != null) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
           onPressed!(PressDirection.up);
+        }
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+          onLeave!(PressDirection.up);
         }
         if (onPressedUp != null) {
           onPressedUp!();
         }
       } else if (y > part * 2) {
-        if (onPressed != null) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
           onPressed!(PressDirection.down);
+        }
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+          onLeave!(PressDirection.down);
         }
         if (onPressedDown != null) {
           onPressedDown!();
@@ -268,15 +275,21 @@ class ArrowPad extends StatelessWidget {
     } else if (y > part && y < part * 2) {
       // left or right
       if (x < part) {
-        if (onPressed != null) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
           onPressed!(PressDirection.left);
+        }
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+          onLeave!(PressDirection.left);
         }
         if (onPressedLeft != null) {
           onPressedLeft!();
         }
       } else if (x > part * 2) {
-        if (onPressed != null) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
           onPressed!(PressDirection.right);
+        }
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+          onLeave!(PressDirection.right);
         }
         if (onPressedRight != null) {
           onPressedRight!();
