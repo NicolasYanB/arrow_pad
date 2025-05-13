@@ -289,7 +289,7 @@ class ArrowPad extends StatelessWidget {
         if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth) && !up) {
           onPressed!(PressDirection.right);
         }
-        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBot) && up) {
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth) && up) {
           onLeave!(PressDirection.right);
         }
         if (onPressedRight != null) {
