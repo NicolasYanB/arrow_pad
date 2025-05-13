@@ -189,11 +189,11 @@ class ArrowPad extends StatelessWidget {
                           onTap: () {},
                           onTapUp: (details) =>
                               clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth
-                                  ? _tapHandle(details, padSize, 1)
+                                  ? _tapHandle(details, padSize, true)
                                   : null,
                           onTapDown: (details) =>
                               clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth
-                                  ? _tapHandle(details, padSize, 0)
+                                  ? _tapHandle(details, padSize, false)
                                   : null,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 2),
