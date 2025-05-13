@@ -187,11 +187,11 @@ class ArrowPad extends StatelessWidget {
                           borderRadius: BorderRadius.circular(padSize - 10),
                           onTap: () {},
                           onTapUp: (details) =>
-                              clickTrigger == ClickTrigger.onTapUp || ClickTrigger.onTapBoth
+                              clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth
                                   ? _tapHandle(details, padSize)
                                   : null,
                           onTapDown: (details) =>
-                              clickTrigger == ClickTrigger.onTapDown || ClickTrigger.onTapBoth
+                              clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth
                                   ? _tapHandle(details, padSize)
                                   : null,
                           child: Padding(
