@@ -189,11 +189,11 @@ class ArrowPad extends StatelessWidget {
                           onTap: () {},
                           onTapUp: (details) =>
                               clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth
-                                  ? _tapHandle(details, padSize)
+                                  ? _tapHandle(details, padSize, 1)
                                   : null,
                           onTapDown: (details) =>
                               clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth
-                                  ? _tapHandle(details, padSize)
+                                  ? _tapHandle(details, padSize, 0)
                                   : null,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 2),
@@ -246,27 +246,27 @@ class ArrowPad extends StatelessWidget {
   ///
   /// Can be used only on the [details] that contains localPosition.
   /// Example: [TapDownDetails] or [TapUpDetails]
-  _tapHandle(details, double padSize) {
+  _tapHandle(details, double padSize, bool up) {
     double x = details.localPosition.dx;
     double y = details.localPosition.dy;
     double part = (padSize - 20) / 3;
     if (x > part && x < part * 2) {
       // up or down
       if (y < part) {
-        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth) && !up) {
           onPressed!(PressDirection.up);
         }
-        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth) && up) {
           onLeave!(PressDirection.up);
         }
         if (onPressedUp != null) {
           onPressedUp!();
         }
       } else if (y > part * 2) {
-        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth) && !up) {
           onPressed!(PressDirection.down);
         }
-        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth) && up) {
           onLeave!(PressDirection.down);
         }
         if (onPressedDown != null) {
@@ -276,20 +276,20 @@ class ArrowPad extends StatelessWidget {
     } else if (y > part && y < part * 2) {
       // left or right
       if (x < part) {
-        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth) && !up) {
           onPressed!(PressDirection.left);
         }
-        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth) && up) {
           onLeave!(PressDirection.left);
         }
         if (onPressedLeft != null) {
           onPressedLeft!();
         }
       } else if (x > part * 2) {
-        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onPressed != null && (clickTrigger == ClickTrigger.onTapDown || clickTrigger == ClickTrigger.onTapBoth) && !up) {
           onPressed!(PressDirection.right);
         }
-        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBoth)) {
+        if (onLeave != null && (clickTrigger == ClickTrigger.onTapUp || clickTrigger == ClickTrigger.onTapBot) && up) {
           onLeave!(PressDirection.right);
         }
         if (onPressedRight != null) {
